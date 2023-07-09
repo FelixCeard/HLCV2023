@@ -1,9 +1,9 @@
 universe                = docker
 docker_image            = tensorflow/tensorflow:latest-gpu
 executable              = test_condor.py
-output                  = condor_logs/tf_matmul.$(ClusterId).$(ProcId).out
-error                   = condor_logs/tf_matmul.$(ClusterId).$(ProcId).err
-log                     = condor_logs/tf_matmul.$(ClusterId).log
+output                  = condor_logs/test.$(ClusterId).$(ProcId).out
+error                   = condor_logs/test.$(ClusterId).$(ProcId).err
+log                     = condor_logs/test.$(ClusterId).log
 should_transfer_files   = YES
 when_to_transfer_output = ON_EXIT
 request_CPUs = 6
