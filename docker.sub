@@ -1,5 +1,5 @@
 universe                = docker
-docker_image            = felixceard/hlcv23:v9
+docker_image            = felixceard/hlcv23:download_thumbnails
 # executable              = /usr/bin/python3.9
 # arguments               = download_thumbnails.py
 output                  = condor_logs/docker.$(ClusterId).$(ProcId).out
