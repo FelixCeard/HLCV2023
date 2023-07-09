@@ -37,6 +37,9 @@ if __name__ == '__main__':
                 uid2; name2; ['category1', 'category2', ...]; ['tag1', 'tag2', ...]
     """
 
+    succinct_failures = 0
+    global succinct_failures
+
     uids_global = objaverse.load_uids()
     # global uids
     # for informative debugging
@@ -55,7 +58,7 @@ if __name__ == '__main__':
 
     def load_batch_anotation(batch_id):
         uids = uids_global[batch_id * BATCH_SIZE: (batch_id + 1) * BATCH_SIZE]
-        annotations = objaverse.load_annotations(uids[:10])
+        annotations = objaverse.load_annotations(uids)
 
         urls = []
 
@@ -97,9 +100,15 @@ if __name__ == '__main__':
 
 
     def download_batch(batch_id):
-
-        urls = load_batch_anotation(batch_id)
-
+        global succinct_failures
+        try:
+            urls = load_batch_anotation(batch_id)
+            succinct_failures = 0
+        except Exception as e:
+            succinct_failures += 1
+            if succinct_failures > 10:
+                raise RuntimeError("Too many failures in a row, aborting...")
+            exit()
         for url in urls:
             download_image(url)
 
