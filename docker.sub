@@ -13,6 +13,8 @@ log                     = condor_logs/docker.$(ClusterId).log
 
 should_transfer_files   = YES
 when_to_transfer_output = ON_EXIT
+transfer_output_files   = thumbnails
+
 request_CPUs = 6
 request_memory = 5G
 requirements = UidDomain == "cs.uni-saarland.de"
