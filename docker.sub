@@ -1,4 +1,3 @@
-transfer_output_files = dataset
 universe                = docker
 docker_image            = felixceard/hlcv23:v9
 # executable              = /usr/bin/python3.9
@@ -12,6 +11,7 @@ should_transfer_files   = YES
 
 should_transfer_files   = YES
 when_to_transfer_output = ON_EXIT
+transfer_output_files = .
 reserve_relative_path = true
 
 request_CPUs = 6
