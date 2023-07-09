@@ -21,3 +21,5 @@ requirements = UidDomain == "cs.uni-saarland.de"
 getenv = True
 queue 1
 
+notify_user = fece00001@stud.uni-saarland.de
+notification = always
