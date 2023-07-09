@@ -1,6 +1,7 @@
 universe                = docker
 docker_image            = tensorflow/tensorflow:latest-gpu
-executable              = test_condor.py
+executable              = execute.sh
+arguments               = test_condor.py
 output                  = condor_logs/test.$(ClusterId).$(ProcId).out
 error                   = condor_logs/test.$(ClusterId).$(ProcId).err
 log                     = condor_logs/test.$(ClusterId).log
