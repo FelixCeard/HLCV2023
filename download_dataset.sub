@@ -14,5 +14,6 @@ when_to_transfer_output = ON_EXIT
 request_CPUs = 6
 request_memory = 5G
 requirements = UidDomain == "cs.uni-saarland.de"
-getenv = HOME
+# getenv = HOME
+getenv = True
 queue 1
