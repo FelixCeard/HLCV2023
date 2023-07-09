@@ -1,5 +1,8 @@
 FROM nvidia/cuda:11.4.3-runtime-ubuntu20.04
 
+RUN adduser -D hlcv_team017
+USER hlcv_team017
+
 RUN apt update || true
 
 # RUN #apt-get install python3.9 -y
