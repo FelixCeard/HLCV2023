@@ -10,4 +10,4 @@
 
 #python -m pip install -r requirements.txt
 
-python "$@"
+/home/hlcv-team017/miniconda3/envs/hlcv-ss23/bin/python "$@"
