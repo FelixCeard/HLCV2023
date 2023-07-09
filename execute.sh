@@ -8,4 +8,6 @@
 #cd $PYTHON_SCRIPT_PATH
 #$CONDA_PYTHON_BINARY_PATH "$@"
 
+python -m pip install -r requirements.txt
+
 python "$@"
