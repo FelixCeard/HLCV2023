@@ -1,8 +1,9 @@
 transfer_output_files = dataset
 universe                = docker
 docker_image            = felixceard/hlcv23:v0
-executable              = python3.9
-arguments               = download_thumbnails.py
+#executable              = python3.9
+#arguments               = download_thumbnails.py
+arguments               =
 output                  = condor_logs/docker.$(ClusterId).$(ProcId).out
 error                   = condor_logs/docker.$(ClusterId).$(ProcId).err
 log                     = condor_logs/docker.$(ClusterId).log
