@@ -1,6 +1,6 @@
 transfer_output_files = dataset
 universe                = docker
-docker_image            = felixceard/hlcv23:v1
+docker_image            = felixceard/hlcv23:v2
 #executable              = python3.9
 #arguments               = download_thumbnails.py
 #arguments               =
