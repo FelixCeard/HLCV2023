@@ -115,7 +115,7 @@ if __name__ == '__main__':
 
 
     def download_images():
-        indices = list(range(len(uids_global) // BATCH_SIZE))[:5]
+        indices = list(range(len(uids_global) // BATCH_SIZE))
 
         with ThreadPoolExecutor(max_workers=cpu_count()) as executor:
             list(tqdm(executor.map(download_batch, indices), total=len(indices), leave=True))
