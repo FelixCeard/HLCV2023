@@ -27,86 +27,6 @@ def download_image(arg):
         # bar_skip.update(1)
         return False
 
-#
-# class Downloader:
-#     def __init__(self):
-#         self.uids = objaverse.load_uids()
-#         # for informative debugging
-#         print('Found', len(self.uids), 'items')
-#
-#         # setup the folder
-#         self.folder = os.makedirs('thumbnails', exist_ok=True)
-#
-#         self.BATCH_SIZE = 10
-#
-#         self.attributes = open('attributes.txt', 'w')
-#
-#         # bar_download.total = len(self.uids)
-#         # bar_skip.total = len(self.uids)
-#
-#     def load_batch_anotation(self, batch_id):
-#         uids = self.uids[batch_id * self.BATCH_SIZE: (batch_id + 1) * self.BATCH_SIZE]
-#         annotations = objaverse.load_annotations(uids[:10])
-#
-#         urls = []
-#
-#         for uid in uids:
-#             annotation = annotations[uid]
-#             name = annotation['name']
-#             tags = annotation['tags']
-#             categories = annotation['categories']
-#
-#             # only keep images with categories (sucht that we are able to train a classifier)
-#
-#             thumbnails = annotation['thumbnails'].get('images')
-#             if thumbnails is None or len(categories) == 0:
-#                 # bar_skip.update(1)
-#                 continue
-#
-#             # get all of the available sizes and download the image closely larger than 256x256 pixels
-#             availables_sizes = [(t['width'], t['size'], t['url']) for t in thumbnails]
-#
-#             min_size = 100000
-#             min_url = None
-#
-#             for width, size, url in availables_sizes:
-#                 # s = min(width, size)
-#
-#                 if width > 256:
-#                     min_size = min(width, min_size)
-#                     if min_size == width:
-#                         min_url = url
-#
-#             # download the min_url
-#             urls.append((min_url, uid, name))
-#
-#             # write the attributes to the file
-#             # if len(tags) == 0:
-#             #     self.attributes.write(f"{uid}; {[str(c['name']) for c in categories]}; \n")
-#             # else:
-#             self.attributes.write(f"{uid}; {[str(c['name']) for c in categories]}; {[str(c['name']) for c in tags]};\n")
-#
-#         return urls
-#
-#     def download_batch(self, batch_id):
-#
-#         urls = self.load_batch_anotation(batch_id)
-#
-#         pool = Pool(cpu_count())
-#         results = pool.map(download_image, urls)
-#         pool.close()
-#         pool.join()
-#
-#     def download_images(self):
-#         indices = list(range(len(self.uids) // self.BATCH_SIZE))
-#
-#         # for i in tqdm(indices, total=len(self.uids) // self.BATCH_SIZE, leave=True):
-#         # for i in range(len(self.uids) // self.BATCH_SIZE):
-#         #     self.download_batch(i)
-#         #     if i == 5:
-#         #         exit()
-
-
 if __name__ == '__main__':
     """
     Downloads all of the 800k thumbnails (in max resolutions) from the Objaverse dataset.
@@ -183,10 +103,6 @@ if __name__ == '__main__':
         for url in urls:
             download_image(url)
 
-        # pool = Pool(cpu_count())
-        # results = pool.map(download_image, urls)
-        # pool.close()
-        # pool.join()
 
 
     def download_images():
@@ -195,10 +111,5 @@ if __name__ == '__main__':
         with ThreadPoolExecutor(max_workers=cpu_count()) as executor:
             list(tqdm(executor.map(download_batch, indices), total=len(indices), leave=True))
 
-        # for i in tqdm(indices, total=len(indices), leave=True):
-        # # for i in range(len(self.uids) // self.BATCH_SIZE):
-        #     download_batch(i)
-        #     if i == 5:
-        #         exit()
 
     download_images()
