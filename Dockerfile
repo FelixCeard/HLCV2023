@@ -1,7 +1,7 @@
 FROM nvidia/cuda:11.4.3-runtime-ubuntu20.04
 
-RUN adduser -D hlcv_team017
-USER hlcv_team017
+#RUN adduser -D hlcv_team017
+#USER hlcv_team017
 
 RUN apt update || true
 
@@ -29,5 +29,5 @@ COPY download_thumbnails.py /home/hlcv_team017/HLCV2023/hlcv/download_thumbnails
 
 RUN python3.9 -m pip install -r /home/hlcv_team017/HLCV2023/hlcv/requirements.txt
 
-WORKDIR /home/hlcv_team017/HLCV2023/hlcv/
-ENTRYPOINT ["python3.9", "/home/hlcv_team017/HLCV2023/hlcv/download_thumbnails.py"]
+#WORKDIR /home/hlcv_team017/HLCV2023/hlcv/
+#ENTRYPOINT ["python3.9", "/home/hlcv_team017/HLCV2023/hlcv/download_thumbnails.py"]

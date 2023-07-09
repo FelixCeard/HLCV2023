@@ -1,19 +1,17 @@
 transfer_output_files = dataset
 universe                = docker
-docker_image            = felixceard/hlcv23:v4
-#executable              = python3.9
-#arguments               = download_thumbnails.py
-#arguments               =
+docker_image            = felixceard/hlcv23:v5
+executable              = /usr/bin/python3.9
+arguments               = download_thumbnails.py
 output                  = condor_logs/docker.$(ClusterId).$(ProcId).out
 error                   = condor_logs/docker.$(ClusterId).$(ProcId).err
 log                     = condor_logs/docker.$(ClusterId).log
 
-# transfer_input_files    = .
-# should_transfer_files   = YES
+transfer_input_files    = .
+should_transfer_files   = YES
 
 should_transfer_files   = YES
 when_to_transfer_output = ON_EXIT
-transfer_output_files   = thumbnails
 
 request_CPUs = 6
 request_memory = 5G
