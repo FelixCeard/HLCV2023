@@ -1,0 +1,11 @@
+name: hlcv-ss23
+channels:
+  - defaults
+dependencies:
+  - objaverse
+  - requests
+  - tqdm
+  - pip:
+    - objaverse
+    - requests
+    - tqdm
