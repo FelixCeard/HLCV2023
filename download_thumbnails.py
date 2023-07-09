@@ -18,7 +18,7 @@ def download_image(arg):
             return False
         file_name = url.split('/')[-1]
         # file_path = os.path.join('thumbnails', f"{str(name)}_{uid}_{file_name}")
-        file_path = os.path.join('thumbnails', f"{uid}_{file_name}")
+        file_path = os.path.join('data/thumbnails', f"{uid}_{file_name}")
         with open(file_path, 'wb') as f:
             f.write(r.content)
         # bar_download.update(1)
@@ -37,6 +37,8 @@ if __name__ == '__main__':
                 uid2; name2; ['category1', 'category2', ...]; ['tag1', 'tag2', ...]
     """
 
+    os.makedirs('data', exist_ok=True)
+
     succinct_failures = 0
 
     uids_global = objaverse.load_uids()
@@ -45,11 +47,11 @@ if __name__ == '__main__':
     print('Found', len(uids_global), 'items')
 
     # setup the folder
-    folder = os.makedirs('thumbnails', exist_ok=True)
+    folder = os.makedirs('data/thumbnails', exist_ok=True)
 
     BATCH_SIZE = 10
 
-    attributes = open('attributes.txt', 'w')
+    attributes = open('data/attributes.txt', 'w')
 
 
     # bar_download.total = len(self.uids)

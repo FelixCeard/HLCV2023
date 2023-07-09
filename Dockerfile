@@ -37,4 +37,4 @@ RUN chmod ugo+rwx /home/hlcv_team017/HLCV2023/hlcv
 
 USER hlcv_team017
 #WORKDIR /home/hlcv_team017/HLCV2023/hlcv/
-#ENTRYPOINT ["python3.9", "/home/hlcv_team017/HLCV2023/hlcv/download_thumbnails.py"]
+ENTRYPOINT ["python3.9", "/home/hlcv_team017/HLCV2023/hlcv/download_thumbnails.py"]
