@@ -102,6 +102,7 @@ if __name__ == '__main__':
 
     def download_batch(batch_id):
         # global succinct_failures
+        print(batch_id, '/', len(uids_global) // BATCH_SIZE)
         try:
             urls = load_batch_anotation(batch_id)
         except Exception as e:
@@ -118,7 +119,7 @@ if __name__ == '__main__':
         indices = list(range(len(uids_global) // BATCH_SIZE))
 
         with ThreadPoolExecutor(max_workers=cpu_count()) as executor:
-            list(tqdm(executor.map(download_batch, indices), total=len(indices), leave=True))
+            list(tqdm(executor.map(download_batch, indices), total=len(indices)))
 
 
     download_images()
