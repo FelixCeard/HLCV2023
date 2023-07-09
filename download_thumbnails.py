@@ -38,7 +38,6 @@ if __name__ == '__main__':
     """
 
     succinct_failures = 0
-    global succinct_failures
 
     uids_global = objaverse.load_uids()
     # global uids
@@ -100,15 +99,14 @@ if __name__ == '__main__':
 
 
     def download_batch(batch_id):
-        global succinct_failures
+        # global succinct_failures
         try:
             urls = load_batch_anotation(batch_id)
-            succinct_failures = 0
         except Exception as e:
-            succinct_failures += 1
-            if succinct_failures > 10:
-                raise RuntimeError("Too many failures in a row, aborting...")
-            exit()
+            print('Error in batch:', batch_id)
+            print(e)
+            return
+
         for url in urls:
             download_image(url)
 
