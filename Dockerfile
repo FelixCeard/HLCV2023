@@ -22,6 +22,7 @@ RUN apt-get install python3-pip -y
 
 #RUN alias pip=pip3
 #RUN alias python=python3
+RUN mkdir -p /home/hlcv_team017/HLCV2023/
 
 WORKDIR /home/hlcv_team017/HLCV2023/hlcv/
 COPY requirements.txt /home/hlcv_team017/HLCV2023/hlcv/requirements.txt
