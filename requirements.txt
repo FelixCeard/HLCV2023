@@ -1,0 +1,3 @@
+objaverse
+requests
+tqdm
