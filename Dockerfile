@@ -27,4 +27,4 @@ COPY download_thumbnails.py /hlcv/download_thumbnails.py
 RUN python3.9 -m pip install -r /hlcv/requirements.txt
 
 WORKDIR /hlcv/
-ENTRYPOINT ["python3.9", "download_thumbnails.py"]
+ENTRYPOINT ["python3.9", "/hlcv/download_thumbnails.py"]
