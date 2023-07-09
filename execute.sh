@@ -10,4 +10,7 @@
 
 #python -m pip install -r requirements.txt
 
-/home/hlcv-team017/miniconda3/envs/hlcv-ss23/bin/python "$@"
+#/home/hlcv_team017/miniconda3/envs/hlcv-ss23/bin/python "$@"
+mkdir /home/hlcv_team017/HLCV2023/outputs
+
+bin/python "$@"
