@@ -10,12 +10,12 @@ transfer_input_files    = .
 should_transfer_files   = YES
 
 should_transfer_files   = YES
-when_to_transfer_output = ON_EXIT
+when_to_transfer_output = ON_EXIT_OR_EVICT
 transfer_output_files = data
 reserve_relative_path = true
 
 request_CPUs = 6
-request_memory = 5G
+request_memory = 50G
 requirements = UidDomain == "cs.uni-saarland.de"
 # getenv = HOME
 getenv = True
