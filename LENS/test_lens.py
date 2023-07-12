@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
         # test attributes
         attribute_start = time.time()
-        attributes = lens(samples, return_tags=False, return_attributes=True, return_global_caption=False, return_intensive_captions=False, return_complete_prompt=False)
+        attributes = lens(samples, return_tags=True, return_attributes=True, return_global_caption=False, return_intensive_captions=False, return_complete_prompt=False)
         attribute_end = time.time()
         print("Time to infer attributes: ", attribute_end - attribute_start)
         print('Attributes: ', attributes.keys())
@@ -58,5 +58,7 @@ if __name__ == '__main__':
         with open('attributes.json', 'w') as f:
             json.dump(attributes['attributes'], f)
 
+        with open('tags.json', 'w') as f:
+            json.dump(attributes['tags'], f)
 
 
