@@ -1,0 +1,21 @@
+universe                = docker
+docker_image            = felixceard/hlcv_lens:v0
+output                  = condor_logs/docker.$(ClusterId).$(ProcId).out
+error                   = condor_logs/docker.$(ClusterId).$(ProcId).err
+log                     = condor_logs/docker.$(ClusterId).log
+
+# transfer_input_files    = .
+# should_transfer_files   = YES
+
+# should_transfer_files   = YES
+# when_to_transfer_output = ON_EXIT_OR_EVICT
+# transfer_output_files = data
+# reserve_relative_path = true
+
+request_GPUs = 1
+request_CPUs = 1
+request_memory = 50G
+requirements = UidDomain == "cs.uni-saarland.de"
++WantGPUHomeMounted = true
+getenv = True
+queue 1
