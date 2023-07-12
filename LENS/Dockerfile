@@ -20,5 +20,5 @@ RUN chmod ugo+rwx /home/hlcv_team017/HLCV2023/LENS
 
 USER hlcv_team017
 
-ENTRYPOINT ["/home/hlcv_team017/HLCV2023/LENS/run.sh"]
+ENTRYPOINT ["/bin/sh", "/home/hlcv_team017/HLCV2023/LENS/run.sh"]
 #ENTRYPOINT ["python3.9", "/home/hlcv_team017/HLCV2023/LENS/test_lens.py"]
