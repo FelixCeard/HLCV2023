@@ -56,9 +56,9 @@ if __name__ == '__main__':
         print('Attributes: ', attributes.keys())
 
         with open('attributes.json', 'w') as f:
-            json.dump(attributes['attributes'], f)
+            json.dump(attributes['attributes'], f, indent=4)
 
         with open('tags.json', 'w') as f:
-            json.dump(attributes['tags'], f)
+            json.dump(attributes['tags'], f, indent=4)
 
 
