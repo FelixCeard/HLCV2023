@@ -13,6 +13,7 @@ COPY run.sh /home/hlcv_team017/HLCV2023/LENS/run.sh
 RUN useradd -u 8877 hlcv_team017
 
 RUN chmod ugo+rwx /home/hlcv_team017/HLCV2023/LENS/run.sh
+RUN chmod 777 /home/hlcv_team017/HLCV2023/LENS/run.sh
 RUN chmod ugo+rwx /home/hlcv_team017
 RUN chmod ugo+rwx /home/hlcv_team017/HLCV2023
 RUN chmod ugo+rwx /home/hlcv_team017/HLCV2023/LENS
