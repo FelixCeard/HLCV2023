@@ -56,7 +56,7 @@ if __name__ == '__main__':
         print('Attributes: ', attributes.keys())
 
         with open('attributes.json', 'w') as f:
-            json.dump(attributes, f)
+            json.dump(attributes['attributes'], f)
 
 
 
