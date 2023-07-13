@@ -52,8 +52,8 @@ if __name__ == '__main__':
     Extract for each image in the dataset the attributes
     """
 
-    BATCH_SIZE = 4
-    NUM_WORKERS = 4
+    BATCH_SIZE = 1
+    NUM_WORKERS = 1
 
 
     os.makedirs('lens_attributes', exist_ok=True)
