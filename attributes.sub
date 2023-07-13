@@ -1,5 +1,5 @@
 universe                = docker
-docker_image            = felixceard/hlcv_lens:v10
+docker_image            = felixceard/hlcv_attributes:v0
 output                  = condor_logs/docker.$(ClusterId).$(ProcId).out
 error                   = condor_logs/docker.$(ClusterId).$(ProcId).err
 log                     = condor_logs/docker.$(ClusterId).log
@@ -13,7 +13,7 @@ transfer_output_files = lens_attributes
 reserve_relative_path = true
 
 request_GPUs = 1
-request_CPUs = 10
+request_CPUs = 2
 request_memory = 50G
 requirements = UidDomain == "cs.uni-saarland.de"
 +WantGPUHomeMounted = true
