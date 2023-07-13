@@ -13,8 +13,8 @@ transfer_output_files = lens_attributes
 reserve_relative_path = true
 
 request_GPUs = 1
-request_CPUs = 2
-request_memory = 50G
+request_CPUs = 1
+request_memory = 40G
 requirements = UidDomain == "cs.uni-saarland.de"
 +WantGPUHomeMounted = true
 getenv = True
