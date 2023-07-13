@@ -52,10 +52,9 @@ if __name__ == '__main__':
     Extract for each image in the dataset the attributes
     """
 
-    BATCH_SIZE = 10
-    NUM_WORKERS = 10
+    BATCH_SIZE = 4
+    NUM_WORKERS = 4
 
-    MAX_IMAGES = 20
 
     os.makedirs('lens_attributes', exist_ok=True)
 
@@ -108,7 +107,3 @@ if __name__ == '__main__':
 
             for uid, name, attribute, tag in zip(uids, names, attributes['attributes'], attributes['tags']):
                 lens_attributes.write(f"{uids} {name} {attribute} {tag}")
-
-            if MAX_IMAGES == 0:
-                exit()
-            MAX_IMAGES -= 1
