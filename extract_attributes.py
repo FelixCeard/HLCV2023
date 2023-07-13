@@ -86,7 +86,7 @@ if __name__ == '__main__':
 
     # save attributes and tags to two files
     lens_attributes = open('lens_attributes/lens_attributes.txt', 'w')
-    lens_tags = open('lens_attributes/lens_tags.txt', 'w')
+    # lens_tags = open('lens_attributes/lens_tags.txt', 'w')
 
     with torch.no_grad():
         for imgs, uids, names in tqdm(dataloader, total=len(dataset)):
@@ -106,4 +106,4 @@ if __name__ == '__main__':
             )
 
             for uid, name, attribute, tag in zip(uids, names, attributes['attributes'], attributes['tags']):
-                lens_attributes.write(f"{uids} {name} {attribute} {tag}")
+                lens_attributes.write(f"{uids}; {name}; {attribute}; {tag};\n")
