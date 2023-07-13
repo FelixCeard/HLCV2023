@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
     # load lense
     lens_start = time.time()
-    lens = Lens()
+    lens = Lens(blip_name=None)
     lens_end = time.time()
     print("Time to load lens: ", lens_end - lens_start)
 
@@ -105,5 +105,8 @@ if __name__ == '__main__':
                 return_complete_prompt=False
             )
 
+            imgs.cpu()
+
             for uid, name, attribute, tag in zip(uids, names, attributes['attributes'], attributes['tags']):
                 lens_attributes.write(f"{uids}; {name}; {attribute}; {tag};\n")
+
