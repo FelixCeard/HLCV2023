@@ -6,8 +6,13 @@ RUN apt-get install python3.9-venv -y
 RUN apt-get install python3-pip -y
 
 WORKDIR /home/hlcv_team017/HLCV2023/
+
+COPY ./striped_lens /home/hlcv_team017/HLCV2023/striped_lens
+
 COPY requirements.txt /home/hlcv_team017/HLCV2023/requirements.txt
-COPY extract_attributes.py /home/hlcv_team017/HLCV2023/extract_attributes.py
+COPY test_striped_lens.py /home/hlcv_team017/HLCV2023/test_striped_lens.py
+COPY test_stripped_lens_long.py /home/hlcv_team017/HLCV2023/test_stripped_lens_long.py
+
 COPY run.sh /home/hlcv_team017/HLCV2023/run.sh
 
 RUN useradd -u 8877 hlcv_team017
@@ -16,6 +21,7 @@ RUN chmod ugo+rwx /home/hlcv_team017/HLCV2023/run.sh
 RUN chmod 777 /home/hlcv_team017/HLCV2023/run.sh
 RUN chmod ugo+rwx /home/hlcv_team017
 RUN chmod ugo+rwx /home/hlcv_team017/HLCV2023
+RUN chmod ugo+rwx /home/hlcv_team017/HLCV2023/striped_lens
 # RUN chmod ugo+rwx /home/hlcv_team017/HLCV2023/LENS
 
 USER hlcv_team017

@@ -1,5 +1,5 @@
 import requests
-from lens import Lens, LensProcessor
+from striped_lens import Lens, LensProcessor
 from PIL import Image
 import torch
 import time
@@ -22,7 +22,7 @@ if __name__ == '__main__':
     # load striped_lens
     # measure time to load striped_lens
     lens_start = time.time()
-    lens = Lens()
+    lens = Lens(device='cpu')
     lens_end = time.time()
     print("Time to load striped_lens: ", lens_end - lens_start)
 
