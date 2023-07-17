@@ -4,7 +4,7 @@ output                  = condor_logs/docker.$(ClusterId).$(ProcId).out
 error                   = condor_logs/docker.$(ClusterId).$(ProcId).err
 log                     = condor_logs/docker.$(ClusterId).log
 
-transfer_input_files    = data
+transfer_input_files    = data, test_striped_lens.py, test_stripped_lens_long.py, striped_lens
 should_transfer_files   = YES
 
 should_transfer_files   = YES
