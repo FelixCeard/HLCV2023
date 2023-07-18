@@ -14,6 +14,8 @@ from tqdm import tqdm
 import torch
 import time
 
+import wandb
+
 
 def get_uids(path: str):
     # b3cc8f7f3cd0495ea3a8ddfae3902921_c0115832864e4938b898d5be34089cf5.jpeg
@@ -61,6 +63,9 @@ if __name__ == '__main__':
     """
     Extract for each image in the dataset the attributes
     """
+    wandb.login(key='3076cae83a37a91cad75c7f3e6e402b1db30e791')
+    wandb.init(project="Attributes")
+
 
     BATCH_SIZE = 1
     NUM_WORKERS = 0
@@ -108,10 +113,10 @@ if __name__ == '__main__':
 
     with torch.no_grad():
         for i in tqdm(range(len(dataset)), total=len(dataset)):
-            print(f'{i}/{len(dataset)}')
+            # print(f'{i}/{len(dataset)}')
 
-            print('Cuda info:')
-            print(torch.cuda.mem_get_info())
+            # print('Cuda info:')
+            # print(torch.cuda.mem_get_info())
 
             imgs, uids, names = dataset[i]
 
@@ -130,3 +135,6 @@ if __name__ == '__main__':
             for uid, name, attribute, tag in zip(uids, names, attributes['attributes'], attributes['tags']):
                 lens_attributes.write(f"{uids}; {name}; {attribute}; {tag};\n")
 
+
+            progress = i / len(dataset)
+            wandb.log({"progress": progress, 'total': i})
