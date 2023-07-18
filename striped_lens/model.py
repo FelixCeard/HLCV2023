@@ -26,8 +26,8 @@ class Lens(nn.Module):
         clip_name: str = "hf-hub:laion/CLIP-ViT-H-14-laion2B-s32B-b79K",
         attributes_weights: str = "zw_attributes_laion_ViT_H_14_2B_descriptors_text_davinci_003_full.pt",
         tags_weights: str = "zw_tags_laion_ViT_H_14_2B_vocab_lens.pt",
-        vocab_attributes: str = "llm-striped_lens/descriptors-text-davinci-003",
-        vocab_tags: str = "llm-striped_lens/vocab_tags",
+        vocab_attributes: str = "llm-lens/descriptors-text-davinci-003",
+        vocab_tags: str = "llm-lens/vocab_tags",
         split_attributes: str = "full",
         split_tags: str = "train",
         device: torch.device = device,
@@ -40,12 +40,12 @@ class Lens(nn.Module):
             self.clip_model = self.load_clip_model(self.clip_name, self.device)
             # Load weights
             huggingface_hub.hf_hub_download(
-                repo_id="llm-striped_lens/attributes",
+                repo_id="llm-lens/attributes",
                 filename=attributes_weights,
                 local_dir=str(Path(Path(__file__).resolve().parent) / "weights"),
             )
             huggingface_hub.hf_hub_download(
-                repo_id="llm-striped_lens/tags",
+                repo_id="llm-lens/tags",
                 filename=tags_weights,
                 local_dir=str(Path(Path(__file__).resolve().parent) / "weights"),
             )
