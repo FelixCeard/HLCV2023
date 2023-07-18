@@ -116,7 +116,7 @@ if __name__ == '__main__':
             imgs, uids, names = dataset[i]
 
             # convert the images to logits
-            samples = processor(imgs)
+            samples = processor([imgs])
             samples['clip_image'] = samples['clip_image'].to(device)
 
             attributes = lens(
