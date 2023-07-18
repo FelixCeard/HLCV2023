@@ -60,17 +60,24 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print('Using device:', device)
 
+    print('Cuda info:')
+    print(torch.cuda.mem_get_info())
+
     # load lense
     lens_start = time.time()
     lens = Lens()
     lens_end = time.time()
     print("Time to load lens: ", lens_end - lens_start)
+    print('Cuda info:')
+    print(torch.cuda.mem_get_info())
 
     # load lens processor
     processor_start = time.time()
     processor = LensProcessor()
     processor_end = time.time()
     print("Time to load processor: ", processor_end - processor_start)
+    print('Cuda info:')
+    print(torch.cuda.mem_get_info())
 
 
     print('Loading dataset')
@@ -78,18 +85,28 @@ if __name__ == '__main__':
     dataset = CustomDataset('data/thumbnails')
     time_end = time.time()
     print('Loading dataset took', time_end - time_start, 'seconds')
+    print('Cuda info:')
+    print(torch.cuda.mem_get_info())
 
-    time_start = time.time()
-    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
-    time_end = time.time()
-    print('Loading dataloader took', time_end - time_start, 'seconds')
+    # time_start = time.time()
+    # dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
+    # time_end = time.time()
+    # print('Loading dataloader took', time_end - time_start, 'seconds')
+    # print('Cuda info:')
+    # print(torch.cuda.mem_get_info())
 
     # save attributes and tags to two files
     lens_attributes = open('lens_attributes/lens_attributes.txt', 'w')
     # lens_tags = open('lens_attributes/lens_tags.txt', 'w')
 
     with torch.no_grad():
-        for imgs, uids, names in tqdm(dataloader, total=len(dataset)):
+        for i in tqdm(range(len(dataset)), total=len(dataset)):
+            print(f'{i}/{len(dataset)}')
+
+            print('Cuda info:')
+            print(torch.cuda.mem_get_info())
+
+            imgs, uids, names = dataset[i]
 
             imgs = imgs.to(device)
 
@@ -100,9 +117,6 @@ if __name__ == '__main__':
                 samples,
                 return_tags=True,
                 return_attributes=True,
-                return_global_caption=False,
-                return_intensive_captions=False,
-                return_complete_prompt=False
             )
 
             imgs.cpu()
