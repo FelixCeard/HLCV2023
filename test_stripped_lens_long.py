@@ -8,6 +8,7 @@ from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 from striped_lens.model import Lens, LensProcessor
 
+from PIL import Image
 from tqdm import tqdm
 
 import torch
@@ -42,9 +43,10 @@ class CustomDataset(Dataset):
         name = self.name[index]
 
         # load image
-        image = io.imread(path)
-        image = torch.tensor(image)
-        image = image.permute(2, 0, 1)
+        image = Image.open(path)
+        # image = io.imread(path)
+        # image = torch.tensor(image)
+        # image = image.permute(2, 0, 1)
 
         return image, uid, name
 
