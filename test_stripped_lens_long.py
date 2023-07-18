@@ -97,14 +97,13 @@ if __name__ == '__main__':
     print('Loading dataset took', time_end - time_start, 'seconds')
     mem_info()
 
-
     # save attributes and tags to two files
     lens_attributes = open('lens_attributes/lens_attributes.txt', 'w')
     # lens_tags = open('lens_attributes/lens_tags.txt', 'w')
 
     wandb.log({"progress": 0, 'total': 0})
     with torch.no_grad():
-        for i in range(len(dataset)):
+        for i in tqdm(range(len(dataset)), total=len(dataset)):
 
             imgs, uids, names = dataset[i]
 
