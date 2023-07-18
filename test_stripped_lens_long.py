@@ -43,6 +43,8 @@ class CustomDataset(Dataset):
 
         # load image
         image = io.imread(path)
+        image = torch.tensor(image)
+        image = image.permute(2, 0, 1)
 
         return image, uid, name
 
@@ -111,8 +113,9 @@ if __name__ == '__main__':
 
             imgs, uids, names = dataset[i]
 
-            imgs = torch.tensor(imgs).to(device)
-            # imgs = imgs.to(device)
+            if len(imgs.shape) == 3:
+                imgs = imgs.unsqueeze(0)
+            imgs = imgs.to(device)
 
             # convert the images to logits
             samples = processor(imgs, None)
