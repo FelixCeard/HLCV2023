@@ -175,7 +175,7 @@ class LensProcessor:
         elif "laion" in model_name:
             return open_clip.create_model_and_transforms(model_name)[2]
 
-    def __call__(self, images: Any, questions: str):
+    def __call__(self, images: Any):
         try:
             clip_image = torch.stack([self.clip_processor(image) for image in images])
         except:
@@ -184,7 +184,6 @@ class LensProcessor:
             ]
 
         return {
-            "clip_image": clip_image,
-            "questions": questions,
+            "clip_image": clip_image
         }
 

@@ -115,12 +115,9 @@ if __name__ == '__main__':
 
             imgs, uids, names = dataset[i]
 
-            if len(imgs.shape) == 3:
-                imgs = imgs.unsqueeze(0)
-            imgs = imgs.to(device)
-
             # convert the images to logits
-            samples = processor(imgs, None)
+            samples = processor(imgs)
+            samples['clip_image'] = samples['clip_image'].to(device)
 
             attributes = lens(
                 samples,

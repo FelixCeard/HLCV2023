@@ -1,5 +1,5 @@
 universe                = docker
-docker_image            = felixceard/gen_attr:v6
+docker_image            = felixceard/gen_attr:v7
 output                  = condor_logs/docker.$(ClusterId).$(ProcId).out
 error                   = condor_logs/docker.$(ClusterId).$(ProcId).err
 log                     = condor_logs/docker.$(ClusterId).log
