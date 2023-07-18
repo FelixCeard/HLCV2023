@@ -6,7 +6,7 @@ from skimage import io
 from torch.utils.data import Dataset
 
 from torch.utils.data import DataLoader
-from striped_lens import Lens, LensProcessor
+from striped_lens.model import Lens, LensProcessor
 
 from tqdm import tqdm
 
@@ -57,17 +57,6 @@ if __name__ == '__main__':
 
     os.makedirs('lens_attributes', exist_ok=True)
 
-    print('Loading dataset')
-    time_start = time.time()
-    dataset = CustomDataset('data/thumbnails')
-    time_end = time.time()
-    print('Loading dataset took', time_end - time_start, 'seconds')
-
-    time_start = time.time()
-    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
-    time_end = time.time()
-    print('Loading dataloader took', time_end - time_start, 'seconds')
-
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print('Using device:', device)
 
@@ -82,6 +71,18 @@ if __name__ == '__main__':
     processor = LensProcessor()
     processor_end = time.time()
     print("Time to load processor: ", processor_end - processor_start)
+
+
+    print('Loading dataset')
+    time_start = time.time()
+    dataset = CustomDataset('data/thumbnails')
+    time_end = time.time()
+    print('Loading dataset took', time_end - time_start, 'seconds')
+
+    time_start = time.time()
+    dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
+    time_end = time.time()
+    print('Loading dataloader took', time_end - time_start, 'seconds')
 
     # save attributes and tags to two files
     lens_attributes = open('lens_attributes/lens_attributes.txt', 'w')
