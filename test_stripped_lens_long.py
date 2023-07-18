@@ -56,8 +56,9 @@ class CustomDataset(Dataset):
 def mem_info():
     print('Cuda info:')
     free, total = torch.cuda.mem_get_info()
-    precentage = (free/ total) * 100
-    print(f'Used: {100.0-precentage:.2f}%, ({free}/{total})')
+    precentage = (free / total) * 100
+    print(f'Used: {100.0 - precentage:.2f}%, ({free}/{total})')
+
 
 if __name__ == '__main__':
     """
@@ -66,16 +67,14 @@ if __name__ == '__main__':
     wandb.login(key='3076cae83a37a91cad75c7f3e6e402b1db30e791')
     wandb.init(project="Attributes")
 
-
     BATCH_SIZE = 1
     NUM_WORKERS = 0
+    NUM_ATTRIBUTES = 20  # in order to have enough attributes to choose from
 
     os.makedirs('lens_attributes', exist_ok=True)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print('Using device:', device)
-
-
 
     # load lense
     lens_start = time.time()
@@ -91,8 +90,6 @@ if __name__ == '__main__':
     print("Time to load processor: ", processor_end - processor_start)
     mem_info()
 
-
-
     print('Loading dataset')
     time_start = time.time()
     dataset = CustomDataset('data/thumbnails')
@@ -100,12 +97,6 @@ if __name__ == '__main__':
     print('Loading dataset took', time_end - time_start, 'seconds')
     mem_info()
 
-    # time_start = time.time()
-    # dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
-    # time_end = time.time()
-    # print('Loading dataloader took', time_end - time_start, 'seconds')
-    # print('Cuda info:')
-    # print(torch.cuda.mem_get_info())
 
     # save attributes and tags to two files
     lens_attributes = open('lens_attributes/lens_attributes.txt', 'w')
@@ -113,11 +104,7 @@ if __name__ == '__main__':
 
     wandb.log({"progress": 0, 'total': 0})
     with torch.no_grad():
-        for i in tqdm(range(len(dataset)), total=len(dataset)):
-            # print(f'{i}/{len(dataset)}')
-
-            # print('Cuda info:')
-            # print(torch.cuda.mem_get_info())
+        for i in range(len(dataset)):
 
             imgs, uids, names = dataset[i]
 
@@ -127,15 +114,14 @@ if __name__ == '__main__':
 
             attributes = lens(
                 samples,
+                num_attributes=NUM_ATTRIBUTES,
+                num_tags=NUM_ATTRIBUTES,
                 return_tags=True,
                 return_attributes=True,
             )
 
-            # imgs['clip_image'].cpu()
-
             for uid, name, attribute, tag in zip(uids, names, attributes['attributes'], attributes['tags']):
                 lens_attributes.write(f"{uids}; {name}; {attribute}; {tag};\n")
 
-
-            progress = (i+1 / len(dataset))*100
-            wandb.log({"progress": progress, 'total': i+1})
+            progress = (float(i + 1.0) / len(dataset)) * 100.0
+            wandb.log({"progress": progress, 'total': i + 1})
