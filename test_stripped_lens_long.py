@@ -125,7 +125,7 @@ if __name__ == '__main__':
                 return_attributes=True,
             )
 
-            imgs.cpu()
+            imgs['clip_image'].cpu()
 
             for uid, name, attribute, tag in zip(uids, names, attributes['attributes'], attributes['tags']):
                 lens_attributes.write(f"{uids}; {name}; {attribute}; {tag};\n")
