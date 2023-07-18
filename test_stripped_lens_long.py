@@ -111,6 +111,7 @@ if __name__ == '__main__':
     lens_attributes = open('lens_attributes/lens_attributes.txt', 'w')
     # lens_tags = open('lens_attributes/lens_tags.txt', 'w')
 
+    wandb.log({"progress": 0, 'total': 0})
     with torch.no_grad():
         for i in tqdm(range(len(dataset)), total=len(dataset)):
             # print(f'{i}/{len(dataset)}')
@@ -136,5 +137,5 @@ if __name__ == '__main__':
                 lens_attributes.write(f"{uids}; {name}; {attribute}; {tag};\n")
 
 
-            progress = i / len(dataset)
-            wandb.log({"progress": progress, 'total': i})
+            progress = (i+1 / len(dataset))*100
+            wandb.log({"progress": progress, 'total': i+1})
