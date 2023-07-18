@@ -47,6 +47,12 @@ class CustomDataset(Dataset):
         return image, uid, name
 
 
+def mem_info():
+    print('Cuda info:')
+    free, total = torch.cuda.mem_get_info()
+    precentage = (free/ total) * 100
+    print(f'Used: {100.0-precentage:.2f}%, ({free}/{total})')
+
 if __name__ == '__main__':
     """
     Extract for each image in the dataset the attributes
@@ -60,24 +66,22 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print('Using device:', device)
 
-    print('Cuda info:')
-    print(torch.cuda.mem_get_info())
+
 
     # load lense
     lens_start = time.time()
     lens = Lens()
     lens_end = time.time()
     print("Time to load lens: ", lens_end - lens_start)
-    print('Cuda info:')
-    print(torch.cuda.mem_get_info())
+    mem_info()
 
     # load lens processor
     processor_start = time.time()
     processor = LensProcessor()
     processor_end = time.time()
     print("Time to load processor: ", processor_end - processor_start)
-    print('Cuda info:')
-    print(torch.cuda.mem_get_info())
+    mem_info()
+
 
 
     print('Loading dataset')
@@ -85,8 +89,7 @@ if __name__ == '__main__':
     dataset = CustomDataset('data/thumbnails')
     time_end = time.time()
     print('Loading dataset took', time_end - time_start, 'seconds')
-    print('Cuda info:')
-    print(torch.cuda.mem_get_info())
+    mem_info()
 
     # time_start = time.time()
     # dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
@@ -108,7 +111,8 @@ if __name__ == '__main__':
 
             imgs, uids, names = dataset[i]
 
-            imgs = imgs.to(device)
+            imgs = torch.tensor(imgs).to(device)
+            # imgs = imgs.to(device)
 
             # convert the images to logits
             samples = processor(imgs, None)
