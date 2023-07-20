@@ -32,7 +32,7 @@ class CustomDataset(Dataset):
 
         self.paths = glob.glob(os.path.join(root, '*.jpeg'))
         self.uids = [get_uids(path) for path in self.paths]
-        self.name = [get_uids(path) for path in self.paths]
+        self.name = [get_name(path) for path in self.paths]
 
         self.length = len(self.paths)
 
