@@ -1,5 +1,5 @@
 universe                = docker
-docker_image            = felixceard/mine_database:v1
+docker_image            = felixceard/mine_database:v2
 output                  = condor_logs/docker.$(ClusterId).$(ProcId).out
 error                   = condor_logs/docker.$(ClusterId).$(ProcId).err
 log                     = condor_logs/docker.$(ClusterId).log
@@ -9,11 +9,11 @@ log                     = condor_logs/docker.$(ClusterId).log
 
 should_transfer_files   = YES
 when_to_transfer_output = ON_EXIT_OR_EVICT
-transfer_output_files = ExplaiNN
+transfer_output_files = /home/hlcv_team017/HLCV2023/clean_attributes/ExplaiNN
 reserve_relative_path = true
 
 # request_GPUs = 0
-request_CPUs = 3
+request_CPUs = 4
 request_memory = 50G
 requirements = UidDomain == "cs.uni-saarland.de"
 # +WantGPUHomeMounted = true

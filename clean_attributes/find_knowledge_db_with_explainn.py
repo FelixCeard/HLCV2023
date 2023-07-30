@@ -20,7 +20,7 @@ if __name__ == '__main__':
     """
 
     # 1. read the attributes-image association file
-    with open('lens_attributes_dictionary.txt', 'r') as file:
+    with open('/home/hlcv_team017/HLCV2023/clean_attributes/lens_attributes_dictionary.txt', 'r') as file:
         content = file.readlines()
 
     class_attributes = dict()
@@ -56,8 +56,8 @@ if __name__ == '__main__':
     json_max_set = dict()
     for i, img_id in enumerate(max_set):
         json_max_set[i] = img_id
-    os.makedirs('Explainn_extra', exist_ok=True)
-    with open('Explainn_extra/attribute_ids.json', 'w') as file:
+    os.makedirs('/home/hlcv_team017/HLCV2023/clean_attributes/Explainn_extra', exist_ok=True)
+    with open('/home/hlcv_team017/HLCV2023/clean_attributes/Explainn_extra/attribute_ids.json', 'w') as file:
         json.dump(json_max_set, file)
 
     # 3. construct the head and tail matrices
@@ -101,12 +101,12 @@ if __name__ == '__main__':
     tail = torch.cat(tails, dim=0)
 
     # 4. save to file
-    torch.save(head, 'Explainn_extra/head.pt')
-    torch.save(tail, 'Explainn_extra/tail.pt')
+    torch.save(head, '/home/hlcv_team017/HLCV2023/clean_attributes/Explainn_extra/head.pt')
+    torch.save(tail, '/home/hlcv_team017/HLCV2023/clean_attributes/Explainn_extra/tail.pt')
 
     # 5. Convert them to ExplaiNN things
     print('Running ExplaiNN')
-    explainn = ExplaiNN(num_labels=tail.shape[-1], vebose=True)
+    explainn = ExplaiNN(num_labels=tail.shape[-1], vebose=True, dir_name='/home/hlcv_team017/HLCV2023/clean_attributes/ExplaiNN')
     explainn.create_dat_file(head=head, tail=tail)
     explainn.create_config_file(pattern_type='label', args={'NOISYHEAD':"true"})
     explainn.run(real_time_shell=True, display_shell=True)
