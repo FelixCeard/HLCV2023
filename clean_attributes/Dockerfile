@@ -19,4 +19,4 @@ RUN chmod ugo+rwx /home/hlcv_team017/HLCV2023/clean_attributes/Explainn_extra
 WORKDIR /home/hlcv_team017/HLCV2023/clean_attributes
 
 USER hlcv_team017
-ENTRYPOINT ["python3.9", "find_knowledge_db_with_explainn.py"]
+ENTRYPOINT ["python3.9", "/home/hlcv_team017/HLCV2023/clean_attributes/find_knowledge_db_with_explainn.py"]
