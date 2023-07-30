@@ -28,8 +28,13 @@ if __name__ == '__main__':
             else:
                 word_not_in_dictionary.append(line)
 
+
+    # remove duplicates
+    word_in_dictionary = list(set(word_in_dictionary))
     with open('cleaned_dictionary.txt', 'w') as file:
         file.write('\n'.join(word_in_dictionary))
+
+
     with open('trash_dictionary.txt', 'w') as file:
         file.write('\n'.join(word_not_in_dictionary))
 
